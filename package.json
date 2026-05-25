@@ -1,0 +1,92 @@
+{
+  "name": "ttf-explorer",
+  "publisher": "winse",
+  "displayName": "TTF Explorer",
+  "description": "Read-only TTF font viewer with glyph grid, glyph details, and text preview. Double-click to open .ttf files directly.",
+  "icon": "images/logo.png",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.78.0"
+  },
+  "categories": [
+    "Visualization"
+  ],
+  "keywords": [
+    "ttf",
+    "font",
+    "explorer",
+    "viewer",
+    "typography"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ttf-explorer.open",
+        "title": "Open in TTF Explorer"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "when": "resourceExtname == .ttf",
+          "command": "ttf-explorer.open",
+          "group": "navigation"
+        }
+      ]
+    },
+    "customEditors": [
+      {
+        "viewType": "ttf-explorer.fontEditor",
+        "displayName": "TTF Explorer",
+        "selector": [
+          {
+            "filenamePattern": "*.ttf"
+          }
+        ]
+      }
+    ],
+    "configuration": {
+      "title": "TTF Explorer",
+      "properties": {
+        "ttf-explorer.glyphPageSize": {
+          "type": "number",
+          "default": 100,
+          "minimum": 10,
+          "maximum": 500,
+          "description": "Number of glyphs shown per page in the glyph grid."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "clean": "if exist dist rmdir /s /q dist & if exist *.vsix del /q *.vsix",
+    "compile": "npm run check-types && node esbuild.config.js",
+    "compile:prod": "npm run check-types && node esbuild.config.js --production",
+    "check-types": "tsc --noEmit",
+    "watch": "node esbuild.config.js --watch",
+    "package": "vsce package",
+    "pkg": "npm run clean && npm run compile:prod && npm run package"
+  },
+  "dependencies": {
+    "@blueprintjs/core": "^6.1.0",
+    "@blueprintjs/icons": "^6.1.0",
+    "fonteditor-core": "^2.4.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "16.x",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.0",
+    "@types/vscode": "^1.78.0",
+    "@vscode/vsce": "^3.2.1",
+    "esbuild": "^0.27.0",
+    "esbuild-sass-plugin": "^3.6.0",
+    "sass": "^1.97.3",
+    "typescript": "^5.0.4"
+  },
+  "license": "MIT",
+  "author": "winse"
+}
