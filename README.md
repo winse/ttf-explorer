@@ -1,6 +1,14 @@
 # TTF Explorer
 
+<div align="center">
+
+![TTF Explorer](images/logo.png)
+
 A VS Code extension for browsing TrueType (`.ttf`) font files in a read-only custom editor. Double-click a font file to inspect glyphs, metrics, and live text preview without leaving the editor.
+
+![UI Preview](images/ui.png)
+
+</div>
 
 ## Features
 

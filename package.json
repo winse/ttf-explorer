@@ -88,5 +88,8 @@
     "typescript": "^5.0.4"
   },
   "license": "MIT",
-  "author": "winse"
+  "author": "winse",
+  "repository": {
+    "url": "git+https://github.com/winse/ttf-explorer.git"
+  }
 }
